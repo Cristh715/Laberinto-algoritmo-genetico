@@ -33,6 +33,28 @@ def generar_poblacion(filas, columnas, tamano_poblacion, inicio, meta):
     
     return poblacion
 
+def mutation(poblacion): 
+    for path in poblacion:
+        mutationpoint=random.randint(1,column-1)
+        # print(f'mutationpoint is {mutationpoint}')
+        path[mutationpoint]=(random.randint(1,row),path[mutationpoint][1])
+    return poblacion
+
+def display(lst):
+    end=time.time()
+    print(lst)
+    a=agent(m,footprints=True)
+    m.tracePath({a:lst},delay=10)
+    # m.tracePath({b:m.path},delay=10)
+    print(f'\n\nsolution occured in generation : {generation+1}')
+    print(f'time taken to find solution is : {end-startt} seconds')
+    m.run()
+    plt.plot(best_in_pop)
+    plt.xlabel('generations')
+    plt.ylabel('min.fitness value per generation')
+    plt.title(f'min.Fitness vs Generations using PopulationSize of {pop_size}\n(minimum fitness is best) \n')
+    plt.show()
+
 inicio = (1, 1)
 meta = (10, 10)
 poblacion = generar_poblacion(10, 10, 5, inicio, meta)
