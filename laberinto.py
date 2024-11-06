@@ -1,8 +1,7 @@
 # Integrantes:
 #  - Cristhian
 #  - Chesney
-#  -
-#  - 
+#  - Marco
 #  - Eros
 
 from pyamaze import maze,agent,COLOR
