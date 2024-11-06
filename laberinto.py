@@ -32,6 +32,17 @@ def generar_poblacion(filas, columnas, tamano_poblacion, inicio, meta):
         poblacion.append(camino)
     
     return poblacion
+    
+def evaluate_fitness(self, individual: Individual, objective: Tuple[int, int] = (1, 1)):
+        if individual.path[-1] == objective:
+            individual.fitness = len(individual.path)
+        else:
+            distance = abs(individual.path[-1][0] - objective[0]) + abs(individual.path[-1][1] - objective[1])
+            individual.fitness = len(individual.path) + (distance * self.penalty_factor)
+
+def evaluate_population(self):
+        for individual in self.population:
+            self.evaluate_fitness(individual, (1, 1))
 
 def crossover(self, parent1: Individual, parent2: Individual) -> Tuple[Individual, Individual]:
         common_points = list(set(parent1.path) & set(parent2.path))
